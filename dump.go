@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"strconv"
 	"strings"
 )
 
@@ -25,10 +24,10 @@ func getInFile(args []string) (io.Reader, error) {
 }
 
 func repr(c byte) byte {
-	if strconv.IsPrint(rune(c)) {
-		return c
+	if c < 32 || c > 126 {
+		return '.'
 	}
-	return '.'
+	return c
 }
 func repr8(bs []byte) string {
 	out := ""
